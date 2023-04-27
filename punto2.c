@@ -1,28 +1,31 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
-#define cantfilas 5
+// #define cantfilas 5
 
 int main(){
     char **punt;
     int cant;
-    punt=(char**)malloc(cantfilas*sizeof(char*));
+    int cantpalabras;
+    printf("Cuantas palabras desea ingresar? ");
+    scanf("%d", &cantpalabras);
+    punt=(char**)malloc(cantpalabras*sizeof(char*));
 
-    for(int i=0;i<cantfilas;i++){
-        printf("Ingrese la cantidad de caracteres de la palabra %d:\n",i+1);
+    for(int i=0;i<cantpalabras;i++){
+        printf("\nIngrese la cantidad de caracteres de la palabra %d: ",i+1);
         scanf("%d",&cant);
         punt[i]=(char*)malloc(cant*sizeof(char));
-        printf("Ingrese la palabra que desea guardar:\n");
+        printf("\nIngrese la palabra que desea guardar: ");
         fflush(stdin);
         gets(punt[i]);
     }
 
-    for(int j=0;j<cantfilas;j++){
-        printf("-----PALABRA %d-----\n",j+1);
+    for(int j=0;j<cantpalabras;j++){
+        printf("\n-----PALABRA %d-----\n",j+1);
         puts(punt[j]);
     }
 
-    for(int k=0;k<cantfilas;k++){
+    for(int k=0;k<cantpalabras;k++){
         free(punt[k]);
     }
 

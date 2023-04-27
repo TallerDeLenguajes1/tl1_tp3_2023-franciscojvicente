@@ -7,16 +7,45 @@
 int* gananciapanio(int matriz[ANIO][MES], int*punteroanio);
 void maxandmin(int matriz[ANIO][MES], int max, int min);
 
-int main(){
-int matriz[ANIO][MES];
-int max = 0;
-int minimo = 99999999;
-int* punteroanio;
+int main() {
+    srand(time(NULL));
+    int matriz[ANIO][MES];
+    int max = 0;
+    int minimo = 99999999;
+    int* punteroanio;
 
-    for (int i=0;i<5;i++){
-        for(int j=0;j<12;j++){
+    // 
+    int ** Pmatriz = (int **) malloc(sizeof(int)* ANIO);
+    // 
+    for (int i = 0; i < ANIO; i++)
+    {
+        Pmatriz[i] = (int *) malloc(sizeof(int)* MES);
+        for (int j = 0; j < MES; j++)
+        {
+            Pmatriz[i][j] =  rand () % 40000 + 10000;
+            printf("%4d    ", Pmatriz[i][j]);
+            
+        }
+        printf("\n");
+    }
+    float promedio;
+    for (int i = 0; i < ANIO; i++)
+    {
+        Pmatriz[i] = (int *) malloc(sizeof(int)* MES);
+        promedio = 0;
+        for (int j = 0; j < MES; j++)
+        {
+            promedio += Pmatriz[i][j];
+        }
+        printf("\n\nEl promedio en el anio %d fue de %.2f", i+1,promedio);
+    }
+    
+    free(Pmatriz);
+
+    for (int i=0;i<ANIO;i++){
+        for(int j=0;j<MES;j++){
             matriz[i][j]=rand()%40000+10000;
-            printf("%4d  ",matriz[i][j]);
+            // printf("%4d    ",matriz[i][j]);
         }
         printf("\n");
     }
@@ -26,7 +55,7 @@ int* punteroanio;
     return 0;
 }
 
-int* gananciapanio(int matriz[ANIO][MES], int*punteroanio){
+int* gananciapanio(int matriz[ANIO][MES], int *punteroanio){
     int promedio = 0;
     for(int i=0;i<5;i++){
         int promedio = 0;
@@ -38,7 +67,6 @@ int* gananciapanio(int matriz[ANIO][MES], int*punteroanio){
         promedio /= 12;
         printf("El promedio de las ganancias por anio en el anio %d es: %d\n",i+1,promedio);
     }
-
     return(punteroanio);
 }
 
